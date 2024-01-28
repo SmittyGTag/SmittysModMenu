@@ -34,4 +34,5 @@ If you would like to contribute to *Smitty's Mod Menu*, feel free to submit a pu
 
 ## Credits
 *Smitty's Mod Menu* was created by SmittyGTag. 
+
 Special thanks to my older brother Ashton for helping me make this :)
