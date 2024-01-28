@@ -15,7 +15,7 @@
 These modules can be useful for exploring the game world, experimenting with gameplay mechanics, or just having fun with friends. They are **not** meant to be used to harass others, which can result in a ban from the game.
 
 ## Usage
-Hold <<<Y>>> to Activate Mod Menu!
+Hold *Y* to Activate Mod Menu!
 
 ## Installation
 To use *Smitty's Mod Menu*, you will need to have [Monke Mod Manager](https://github.com/DeadlyKitten/MonkeModManager/releases) installed. 
