@@ -49,8 +49,18 @@ namespace SmittyModMenu.Patches
         }
     }
 
-    [HarmonyPatch(typeof(GorillaNot), "IncrementRPCTracker")]
-    public class NoIncrementRPCTracker : MonoBehaviour
+    [HarmonyPatch(typeof(GorillaNot), "IncrementRPCCallLocal")]
+    public class NoIncrementRPCCallLocal : MonoBehaviour
+    {
+        private static bool Prefix(PhotonMessageInfoWrapped infoWrapped, string rpcFunction)
+        {
+            // Debug.Log(info.Sender.NickName + " sent rpc: " + rpcFunction);
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(GorillaNot), "GetRPCCallTracker")]
+    internal class NoGetRPCCallTracker : MonoBehaviour
     {
         private static bool Prefix()
         {
@@ -58,16 +68,7 @@ namespace SmittyModMenu.Patches
         }
     }
 
-    [HarmonyPatch(typeof(GorillaNot), "IncrementRPCCallLocal")]
-    public class NoIncrementRPCCallLocal : MonoBehaviour
-    {
-        private static bool Prefix(PhotonMessageInfo info, string rpcFunction)
-        {
-            return false;
-        }
-    }
-
-    [HarmonyPatch(typeof(GorillaNot), "IncrementRPCCall")]
+    [HarmonyPatch(typeof(GorillaNot), "IncrementRPCCall", new Type[] { typeof(PhotonMessageInfo), typeof(string) })]
     public class NoIncrementRPCCall : MonoBehaviour
     {
         private static bool Prefix(PhotonMessageInfo info, string callingMethod = "")
@@ -76,10 +77,11 @@ namespace SmittyModMenu.Patches
         }
     }
 
-    [HarmonyPatch(typeof(VRRig), "IncrementRPC")]
+    // Thanks DrPerky
+    [HarmonyPatch(typeof(VRRig), "IncrementRPC", new Type[] { typeof(PhotonMessageInfoWrapped), typeof(string) })]
     public class NoIncrementRPC : MonoBehaviour
     {
-        private static bool Prefix()
+        private static bool Prefix(PhotonMessageInfoWrapped info, string sourceCall)
         {
             return false;
         }
